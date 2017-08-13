@@ -104,9 +104,13 @@ class PassThroughBridge(Bridge):
     return {}
 
   def _create(self):
-    nest.assert_same_structure(self.encoder_outputs.final_state,
+    # by robin 
+    #nest.assert_same_structure(self.encoder_outputs.final_state,
+    #                           self.decoder_state_size)
+    #return self.encoder_outputs.final_state
+    nest.assert_same_structure(self.encoder_outputs.final_state[0],
                                self.decoder_state_size)
-    return self.encoder_outputs.final_state
+    return self.encoder_outputs.final_state[0]
 
 
 class InitialStateBridge(Bridge):
